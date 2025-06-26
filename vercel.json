@@ -1,5 +1,5 @@
 {
+  "framework": "docusaurus-2",
   "buildCommand": "yarn build",
-  "outputDirectory": "build",
-  "framework": "other"
+  "outputDirectory": "build"
 }
