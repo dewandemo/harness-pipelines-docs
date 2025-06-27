@@ -92,18 +92,17 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
-plugins: [
-  function tailwindPlugin() {
-    return {
-      name: 'tailwind-plugin',
-      configurePostCss(postcssOptions) {
-        postcssOptions.plugins.push(require('@tailwindcss/postcss'));
-        postcssOptions.plugins.push(require('autoprefixer'));
-        return postcssOptions;
-      },
-    };
-  },
-],
+  plugins: [
+    function tailwindPlugin(context, options) {
+      return {
+        name: 'tailwind-plugin',
+        configurePostCss(postcssOptions) {
+          postcssOptions.plugins = [require('@tailwindcss/postcss')];
+          return postcssOptions;
+        },
+      };
+    },
+  ],
 };
 
 export default config;
