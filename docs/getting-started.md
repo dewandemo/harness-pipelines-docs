@@ -1,6 +1,6 @@
 ---
 title: Get started
-description: Build an end-to-end test for a workflow
+description: Get started with Harness pipeline syntax
 sidebar_position: 20
 sidebar_label: Get Started
 ---

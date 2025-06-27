@@ -3,7 +3,7 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Harness Developer Hub',
+  title: 'Harness Pipeline Syntax',
   tagline:
     'Learn intelligent software delivery at your own pace. Guides, videos, and reference docs to help you deliver customer happiness.',
 

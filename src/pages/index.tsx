@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
       <Theme>
@@ -42,7 +42,7 @@ export default function HomePage() {
             <div className="container mx-auto px-4">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <Link href="/getting-started">
+                  <Link href="/docs/getting-started">
                     <CardHeader>
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                         <Zap className="h-6 w-6 text-blue-600" />
@@ -56,7 +56,7 @@ export default function HomePage() {
                 </Card>
 
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <Link href="/syntax">
+                  <Link href="/docs/pipeline-syntax">
                     <CardHeader>
                       <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                         <Code className="h-6 w-6 text-teal-600" />
@@ -70,60 +70,19 @@ export default function HomePage() {
                 </Card>
 
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <Link href="/examples">
+                  <Link href="/docs/pipeline-examples">
                     <CardHeader>
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                         <BookOpen className="h-6 w-6 text-green-600" />
                       </div>
-                      <CardTitle>Examples & Tutorials</CardTitle>
+                      <CardTitle>Use Cases and Examples</CardTitle>
                       <CardDescription>
-                        Real-world examples for common CI/CD scenarios
+                        Code samples for common CI/CD scenarios
                       </CardDescription>
                     </CardHeader>
                   </Link>
                 </Card>
 
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <Link href="/best-practices">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <Shield className="h-6 w-6 text-purple-600" />
-                      </div>
-                      <CardTitle>Best Practices</CardTitle>
-                      <CardDescription>
-                        Guidelines and recommendations for optimal pipeline design
-                      </CardDescription>
-                    </CardHeader>
-                  </Link>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <Link href="/api-reference">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                        <Layers className="h-6 w-6 text-orange-600" />
-                      </div>
-                      <CardTitle>API Reference</CardTitle>
-                      <CardDescription>
-                        Detailed API documentation for pipeline automation
-                      </CardDescription>
-                    </CardHeader>
-                  </Link>
-                </Card>
-
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <Link href="/github-compatibility">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                        <GitBranch className="h-6 w-6 text-gray-600" />
-                      </div>
-                      <CardTitle>GitHub Compatibility</CardTitle>
-                      <CardDescription>
-                        Using GitHub Actions syntax with Harness extensions
-                      </CardDescription>
-                    </CardHeader>
-                  </Link>
-                </Card>
               </div>
             </div>
           </section>
@@ -158,7 +117,7 @@ export default function HomePage() {
                 </div>
                 <div className="text-center mt-8">
                   <Button asChild variant="outline">
-                    <Link href="/examples">
+                    <Link href="/docs/pipeline-examples">
                       View All Examples <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
