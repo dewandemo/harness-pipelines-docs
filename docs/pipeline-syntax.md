@@ -235,8 +235,6 @@ Secret
 Failure Strategy
 Conditional Execution
 Matrix, Looping, and Parallelism
-[Q](Are there additional input types?)
-A: https://harness.atlassian.net/wiki/spaces/CDNG/pages/21872247626/Inputs
 
 ### `inputs.<input_name>.required`
 ---

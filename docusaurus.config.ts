@@ -66,7 +66,7 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Pipeline Reference',
-          to: 'docs/pipeline',
+          to: 'docs/pipeline-syntax',
         },
       ],
     },

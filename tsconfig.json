@@ -1,7 +1,17 @@
 {
   // This file is not used in compilation. It is here just for a nice editor experience.
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "moduleResolution": "node16",
+    "module": "Node16",
+    "types": ["react", "node"],
+    "paths": {
+      "@docusaurus/*": ["node_modules/@docusaurus/*"],
+      "@site/*": ["src/*"],
+      "@theme/*": ["src/theme/*"]
+    }
   },
   "exclude": [".docusaurus", "build"]
 }

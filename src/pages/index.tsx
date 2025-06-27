@@ -4,7 +4,7 @@ import '@radix-ui/themes/styles.css';
 import { ArrowRight, GitBranch, Zap, Shield, Layers, Code, BookOpen } from 'lucide-react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { Card, CardDescription, CardHeader, CardTitle } from '@site/src/components/ui/card';
+import { Card, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 export default function HomePage() {
   const { siteConfig } = useDocusaurusContext();
 
@@ -32,7 +32,7 @@ export default function HomePage() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <Button color="blue" variant="outline" size={'3'}>
-                    <Link href="/docs/pipeline">View Syntax Reference</Link>
+                    <Link href="/docs/pipeline-syntax">View Syntax Reference</Link>
                   </Button>
                 </div>
               </div>
