@@ -1,7 +1,0 @@
----
-title: output
----
-
-```yaml
-
-```
