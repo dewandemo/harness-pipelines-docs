@@ -10,6 +10,7 @@ pnpm-debug.log*
 .cache/
 .docusaurus/
 dist/
+build/
 
 # Env
 .env
