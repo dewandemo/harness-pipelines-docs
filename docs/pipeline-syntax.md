@@ -11,7 +11,7 @@ Harness Pipelines are defined using yaml syntax. Therefore, all pipeline files w
 
 This document will break down options for your pipelines using yaml.
 
-Samples will be included in the definitions, but for more samples go to the [unified pipeline spec](https://github.com/bradrydzewski/spec/blob/master/samples)
+Samples will be included in the definitions, but for more samples go to the [pipeline spec](https://github.com/bradrydzewski/spec/blob/master/samples)
 
 ## `pipeline`
 
@@ -874,7 +874,13 @@ Steps can be grouped using:
 
 ---
 
-Defines a run step for the stage. This step runs scripts, builds, deploys code etc. [Q](Add a better description)
+Defines a command execution step in your stage. The run step is used to execute shell commands, scripts, or build tools in the specified shell environment.
+
+Common use cases:
+- Running build commands (go build, npm install, etc.)
+- Executing test suites
+- Running custom CLI tools or scripts
+- Installing dependencies
 
 #### `steps[*].run.shell`
 
@@ -1210,7 +1216,15 @@ These steps start npm in the background and then proceeds to run a test suite wi
 
 ---
 
-Defines a step barrier. [Q](Why have a step barrier??)
+Defines a synchronization point in a sequence of steps. A barrier ensures that all preceding steps have completed before any subsequent steps begin. This is especially useful when running steps in parallel or across different stages and you need to coordinate their execution before moving forward.
+
+Why use a barrier?
+
+- To pause execution until all previous steps are finished
+
+- To prevent race conditions in pipelines with parallelism
+
+- To group dependent steps, ensuring they run in the right order even in complex flows
 
 Options:
 
@@ -1346,7 +1360,15 @@ Defines the clone reference. For more information, go to [clone ref](./pipeline-
 ---
 
 Defines a step group. A step group is a logical construction that groups a set of steps together.
-[Q](Why is this useful)
+You can add steps to pipelines individually or in step groups. Steps in step groups can run serially or in parallel.
+
+Step groups can have conditional executions, failure strategies, and looping strategies that apply to all steps in the group.
+
+You might use step groups to:
+
+- Improve test times in pipelines that include a lot of tests.
+- Run health checks on background services.
+- Organize complex stages that have lots of steps.
 
 #### `steps[*].group.parallel`
 
@@ -1358,7 +1380,7 @@ Defines the maximum number of steps that can run in parallel. If unset, zero, or
 
 ---
 
-Defines a list of steps that run within the group.
+Defines a list of steps that run within the group. 
 
 ##### Example: Using a step group
 
