@@ -5,19 +5,81 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-## Harness Pipelines and YAML
-
 Harness Pipelines are defined using yaml syntax. Therefore, all pipeline files will end with a `.yml` or `.yaml` file extension.
 
 This document will break down options for your pipelines using yaml.
 
 Samples will be included in the definitions, but for more samples go to the [pipeline spec](https://github.com/bradrydzewski/spec/blob/master/samples)
 
-## `pipeline`
+# `pipeline`
 
 ---
 
 Each pipeline yaml will start with `pipeline`. Every other option on this page is a child of `pipeline` and thus we will not explicitly list it as the parent.
+
+## barriers
+
+**Type:** `array<string>`
+
+`barriers` let you define execution checkpoints across jobs or stages. They are useful for controlling the order of execution in concurrent pipelines.
+
+```yaml
+barriers:
+  - wait-for-db
+  - sync-point
+```
+
+## `clone`
+
+---
+
+Defines settings for pipeline cloning. Can be set to `false` to disable cloning.
+
+### depth
+**Type:** number
+
+Defines the clone depth (e.g., shallow clone with depth: 1).
+
+### disabled
+**Type:** boolean
+
+Disables the default clone step. Equivalent to setting clone: false.
+
+### insecure
+**Type:** boolean
+
+Clones the repository without SSL verification.
+
+### lfs
+**Type:** boolean
+
+Enables Git LFS support during clone.
+
+### ref
+**Type:** string
+
+Specifies the Git reference to check out (branch, SHA, or tag).
+
+### strategy
+**Type:** string
+
+Configures the clone strategy.
+Valid values: `source-branch`, `merge`
+
+### submodules
+**Type:** boolean
+
+Enables cloning all Git submodules.
+
+### tags
+**Type:** boolean
+
+Fetches all tags from the repository.
+
+### trace
+**Type:** boolean
+
+Enables trace-level logging for Git operations.
 
 ## `on`
 
@@ -150,11 +212,6 @@ pipeline:
         - go build
 ```
 
-## `clone`
-
----
-
-Defines settings for pipeline cloning. Can be set to `false` to disable cloning.
 
 ### `clone.disabled`
 
@@ -1534,3 +1591,58 @@ Defines the Github Action being used.
 ---
 
 An array of variables that define the Github Action's configuration parameters.
+
+
+
+### jobs
+
+## jobs
+
+**Type:** `map<string, Job>`
+
+`jobs` define units of work that can be executed in parallel or conditionally. Use `jobs` instead of `stages` when you want more granular control over execution order, conditions, and concurrency.
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building..."
+  test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Testing..."
+```
+
+
+### permissions
+
+## permissions
+
+**Type:** `object`
+
+`permissions` allow you to control access to secrets, environments, and external systems in your pipeline.
+
+```yaml
+permissions:
+  id-token: write
+  contents: read
+```
+
+Use this to limit the scope of access for your pipeline execution.
+
+
+### status
+
+## status
+
+**Type:** `string`
+
+`status` allows conditional logic based on pipeline state, such as limiting execution to certain outcomes like `success` or `failure`.
+
+```yaml
+status: success
+```
+
+This is useful in `on` conditions or stage-level logic.
