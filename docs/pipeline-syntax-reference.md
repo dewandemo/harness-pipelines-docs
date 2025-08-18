@@ -700,13 +700,13 @@ Options:
 
 Defines a list of storage volumes used by the stage.
 
-#### `stages[*].volumes[i].name`
+#### `stages[*].volumes[*].name`
 
 ---
 
 Name of the volume.
 
-#### `stages[*].volumes[i].uses`
+#### `stages[*].volumes[*].uses`
 
 ---
 
@@ -718,7 +718,7 @@ Options:
 - `config`
 - `temp`
 
-#### `stages[*].volumes[i].with`
+#### `stages[*].volumes[*].with`
 
 ---
 

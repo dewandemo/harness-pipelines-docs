@@ -13,11 +13,28 @@ Harness Pipelines are defined using YAML syntax. This guide covers the essential
 
 ## `pipeline`
 
-Every pipeline YAML file starts with `pipeline`. All other elements are children of this root element.
+Every pipeline YAML file starts with `pipeline`. All other elements are children of this root element. The following sample shows a simplified structure of a Harness pipeline.
 
 ```yaml
 pipeline:
-  # Your pipeline configuration goes here
+  name: example-pipeline
+  id: example-pipeline-id
+  on: push
+  stages:
+    - stage:
+        name: build-stage
+        steps:
+          - step:
+              ...
+          - step:
+              ...
+    - stage:
+        name: deploy-stage
+        steps:
+          - step:
+              ...
+          - step:
+              ...
 ```
 
 ## `on`

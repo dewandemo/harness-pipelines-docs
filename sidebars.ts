@@ -15,5 +15,10 @@ export default {
       id: 'pipeline-syntax-reference',
       label: 'Pipeline Syntax Reference',
     },
+    {
+      type: 'doc',
+      id: 'pipeline-samples',
+      label: 'Pipeline Samples',
+    },
   ],
 };
