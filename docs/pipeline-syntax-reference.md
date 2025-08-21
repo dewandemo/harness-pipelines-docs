@@ -1,23 +1,25 @@
 ---
-title: Pipeline Syntax
-sidebar_position: 1
+title: Pipeline Syntax Reference
+sidebar_position: 2
 toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-## Harness Pipelines and YAML
+> **New to Harness?** Start with the [Essentials Guide](./pipeline-syntax-essentials).
 
-Harness Pipelines are defined using yaml syntax. Therefore, all pipeline files will end with a `.yml` or `.yaml` file extension.
+# Harness Pipeline Syntax Reference
 
-This document will break down options for your pipelines using yaml.
+Harness Pipelines are defined using YAML syntax. Therefore, all pipeline files will end with a `.yml` or `.yaml` file extension.
 
-Samples will be included in the definitions, but for more samples go to the [pipeline spec](https://github.com/bradrydzewski/spec/blob/master/samples)
+This document provides the complete reference for all pipeline options using YAML.
+
+Samples will be included in the definitions, but for more samples go to the [unified pipeline spec](https://github.com/bradrydzewski/spec/blob/master/samples)
 
 ## `pipeline`
 
 ---
 
-Each pipeline yaml will start with `pipeline`. Every other option on this page is a child of `pipeline` and thus we will not explicitly list it as the parent.
+Each pipeline YAML will start with `pipeline`. Every other option on this page is a child of `pipeline` and thus we will not explicitly list it as the parent.
 
 ## `on`
 
@@ -102,7 +104,7 @@ Use `env` to define environment variables. This field is a map of environment va
 
 Define this at the pipeline, stage, or step scope.
 
-[A] Reword the above. environment variables will be intialized up front, and are set at the pipeline scope. This means they will be available for all stages and steps of the pipeline. They can be overridden.
+Environment variables will be initialized up front, and are set at the pipeline scope. This means they will be available for all stages and steps of the pipeline. They can be overridden.
 
 #### Example: Using `env`
 
@@ -210,7 +212,7 @@ Set this boolean to `true` to allow insecure cloning.
 
 ---
 
-Set this boolean to `true` to enable a trace log of the clone operation. [Q] (might be for the container based step ask Rohit)
+Set this boolean to `true` to enable a trace log of the clone operation.
 
 ## `inputs`
 
@@ -246,16 +248,6 @@ Defines the type of the input. Available types:
 - `connector`
 - `number`
 
-Service
-Environment
-Infrastructure
-Connector
-String
-Secret
-Failure Strategy
-Conditional Execution
-Matrix, Looping, and Parallelism
-
 ### `inputs.<input_name>.required`
 
 ---
@@ -288,11 +280,9 @@ pipeline:
 
 ---
 
-Makes the input an `enum`. Can be used with other variable types. [Q](Why would you use enums? How do they work?)
+Makes the input an `enum`. Can be used with other variable types.
 
-```Enums are "allow" values. We let one of these 3 parameters or choices to be the input. Can take in different object types like service or connector. The value is chosen at runtime
-
-```
+Enums are "allow" values. We let one of these 3 parameters or choices to be the input. Can take in different object types like service or connector. The value is chosen at runtime.
 
 #### Example: Using inputs with enums
 
@@ -398,8 +388,6 @@ Some pipelines will work with more than one environment. Use `environment.items`
 
 Use `environment.items` to specify more than one environment.
 
-[Q]
-
 ### `environment.items[*].name`
 
 ---
@@ -412,7 +400,7 @@ The name of the environment.
 
 A single name or list of names that defines the target infrastructure.
 
-You can use the keyword `all` instead of an infrastructure name to target all infrastructure definitions. [Q](Is all clusters right?)
+You can use the keyword `all` instead of an infrastructure name to target all infrastructure definitions.
 
 #### Example: A multi-environment pipeline
 
@@ -698,7 +686,7 @@ pipeline:
 ---
 
 Policy configures the pull and push behavior of the cache.
-By default, the stage pulls the cache when the stage starts and pushes changes to the cache when the stage ends. This is the `pull-push` option below. ß
+By default, the stage pulls the cache when the stage starts and pushes changes to the cache when the stage ends. This is the `pull-push` option below.
 
 Options:
 
@@ -712,13 +700,13 @@ Options:
 
 Defines a list of storage volumes used by the stage.
 
-#### `stages[*].volumes[i].name`
+#### `stages[*].volumes[*].name`
 
 ---
 
 Name of the volume.
 
-#### `stages[*].volumes[i].uses`
+#### `stages[*].volumes[*].uses`
 
 ---
 
@@ -730,7 +718,7 @@ Options:
 - `config`
 - `temp`
 
-#### `stages[*].volumes[i].with`
+#### `stages[*].volumes[*].with`
 
 ---
 
@@ -924,9 +912,7 @@ Script runs command line scripts using the operating system's shell. Each script
 
 ---
 
-The run step will run inside the container defined here. If you do not set a container, the step will run directly on the host unless the target runtime in kubernetes, in which case the container is required. [Q]
-
-[Q](Add container long configuration)
+The run step will run inside the container defined here. If you do not set a container, the step will run directly on the host unless the target runtime in kubernetes, in which case the container is required.
 
 ##### Example: Using `run.container`
 
@@ -958,7 +944,7 @@ Define and run the step in a custom golang container.
 
 ---
 
-Defines the environment variables of the step. See [env](./pipeline-syntax#env)
+Defines the environment variables of the step. See [env](./pipeline-syntax-reference#env)
 
 ##### Example: Using `run.env`
 
@@ -1031,7 +1017,7 @@ Defines the parameters for the action.
 
 ---
 
-Defines the environment variable for the step. Go to [env](./pipeline-syntax#env) for more info.
+Defines the environment variable for the step. Go to [env](./pipeline-syntax-reference#env) for more info.
 
 ##### Example: Using `steps[*].action` for a Github Action
 
@@ -1113,15 +1099,11 @@ Provides unit test matching logic in glob format.
 
 ---
 
-The run step will run inside the container defined here. If you do not set a container, the step will run directly on the host unless the target runtime in kubernetes, in which case the container is required. [Q]
-
-[Q](Add container long configuration)
+The run step will run inside the container defined here. If you do not set a container, the step will run directly on the host unless the target runtime in kubernetes, in which case the container is required.
 
 #### `steps[*].run-test.env`
 
 ---
-
-MOVE UP A LEVEL
 
 #### `steps[*].run-test.splitting`
 
@@ -1232,7 +1214,7 @@ Defines the environment variables for the step.
 
 ---
 
-Defines a background step. Configuration for this step is the same as the [run step](./pipeline-syntax#stepsrun).
+Defines a background step. Configuration for this step is the same as the [run step](./pipeline-syntax-reference#stepsrun).
 
 ##### Example: Using the `background` step
 
@@ -1385,9 +1367,7 @@ Boolean. Enables trace logging.
 
 ---
 
-Defines the clone reference. For more information, go to [clone ref](./pipeline-syntax.md#cloneref)
-
-[Q](Is this a duplicate of the pipeline clone config?)
+Defines the clone reference. For more information, go to [clone ref](./pipeline-syntax-reference.md#cloneref)
 
 ### `steps[*].group`
 
@@ -1480,7 +1460,7 @@ String or list of strings. Defines steps that must be completed before this one 
 
 ---
 
-Defines the matrix or looping strategy for the step. For more information, go to [strategies](./pipeline-syntax#stagesstrategy)
+Defines the matrix or looping strategy for the step. For more information, go to [strategies](./pipeline-syntax-reference#stagesstrategy)
 
 ##### Example: Using `strategy` in a step
 
@@ -1498,7 +1478,7 @@ Defines the matrix or looping strategy for the step. For more information, go to
 
 ---
 
-Defines the failure strategy for the step. For more information, go to [on-failure](./pipeline-syntax#stageson-failure)
+Defines the failure strategy for the step. For more information, go to [on-failure](./pipeline-syntax-reference#stageson-failure)
 
 ##### Example: Using `on-failure` in a step
 

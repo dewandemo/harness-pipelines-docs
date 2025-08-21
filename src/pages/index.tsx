@@ -31,9 +31,7 @@ export default function HomePage() {
                     <ArrowRight className={styles.iconSpacing} />
                   </Button>
                   <Button color="blue" variant="outline" size="3">
-                    <Link href="/docs/pipeline-syntax" style={{ color: 'gray' }}>
-                      View Syntax Reference
-                    </Link>
+                    <Link href="/docs/pipeline-syntax-essentials">View Syntax Reference</Link>
                   </Button>
                 </div>
               </div>
@@ -58,12 +56,12 @@ export default function HomePage() {
               </Card>
 
               <Card className={styles.cardHover}>
-                <Link href="/docs/pipeline-syntax">
+                <Link href="/docs/pipeline-syntax-essentials">
                   <CardHeader>
                     <div className={`${styles.iconBox} ${styles.tealBg}`}>
                       <Code className={styles.tealIcon} />
                     </div>
-                    <CardTitle>Pipeline Syntax</CardTitle>
+                    <CardTitle>Pipeline Essentials Guide</CardTitle>
                     <CardDescription>
                       Complete reference for pipeline YAML syntax and components
                     </CardDescription>
@@ -72,12 +70,12 @@ export default function HomePage() {
               </Card>
 
               <Card className={styles.cardHover}>
-                <Link href="/docs/pipeline-examples">
+                <Link href="/docs/pipeline-syntax-reference">
                   <CardHeader>
                     <div className={`${styles.iconBox} ${styles.greenBg}`}>
                       <BookOpen className={styles.greenIcon} />
                     </div>
-                    <CardTitle>Use Cases and Examples</CardTitle>
+                    <CardTitle>Complete Pipeline Reference</CardTitle>
                     <CardDescription>Code samples for common CI/CD scenarios</CardDescription>
                   </CardHeader>
                 </Link>
@@ -113,7 +111,7 @@ export default function HomePage() {
                 </div>
                 <div className={`${styles.textCenter} ${styles.marginTopLg}`}>
                   <Button asChild variant="outline">
-                    <Link href="/docs/pipeline-examples">
+                    <Link href="/docs/pipeline-syntax-reference">
                       View All Examples <ArrowRight className={styles.iconSpacing} />
                     </Link>
                   </Button>
