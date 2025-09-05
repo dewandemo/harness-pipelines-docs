@@ -111,7 +111,7 @@ export default function HomePage() {
                 </div>
                 <div className={`${styles.textCenter} ${styles.marginTopLg}`}>
                   <Button asChild variant="outline">
-                    <Link href="/docs/pipeline-syntax-reference">
+                    <Link href="/docs/pipeline-samples">
                       View All Examples <ArrowRight className={styles.iconSpacing} />
                     </Link>
                   </Button>

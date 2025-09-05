@@ -7,15 +7,13 @@ toc_max_heading_level: 3
 
 > **New to Harness?** Start with the [Essentials Guide](./pipeline-syntax-essentials).
 
-# Harness Pipeline Syntax Reference
-
 Harness Pipelines are defined using YAML syntax. Therefore, all pipeline files will end with a `.yml` or `.yaml` file extension.
 
 This document provides the complete reference for all pipeline options using YAML.
 
 Samples will be included in the definitions, but for more samples go to the [unified pipeline spec](https://github.com/bradrydzewski/spec/blob/master/samples)
 
-## `pipeline`
+# `pipeline`
 
 ---
 
@@ -77,6 +75,44 @@ pipeline:
             script: go build
 ```
 
+## `barriers`
+
+Barriers provide optional pipeline barriers.
+
+Type: array of strings
+
+### Example
+```yaml
+pipeline:
+  barriers:
+    - build-complete
+    - security-check
+```  
+## `name`
+---
+Human-readable name for the pipeline.
+
+### Example
+```yaml
+pipeline:
+  name: Build Pipeline
+  stages:
+    - steps:
+        - run:
+            script: go build
+```
+## `id`
+---
+String that uniquely identifies the pipeline.
+### Example
+```yaml
+pipeline:
+  id: build_pipeline
+  stages:
+    - steps:
+        - run:
+            script: go build
+```
 ## `if`
 
 ---
@@ -1514,3 +1550,27 @@ Defines the Github Action being used.
 ---
 
 An array of variables that define the Github Action's configuration parameters.
+
+## `delegate`
+---
+
+Delegate defines the default delegate that should handle stage execution. This is optional. Unless a stage overrides it, stages inherit this setting.
+
+### Example
+
+```yaml
+pipeline:
+  delegate: prod-delegate
+  stages:
+    - steps:
+        - run:
+            script: go build
+```
+
+Multiple delegates:
+```yaml
+pipeline:
+  delegate:
+    - prod-delegate-a
+    - prod-delegate-b
+```
