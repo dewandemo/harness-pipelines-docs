@@ -82,43 +82,6 @@ export default function HomePage() {
               </Card>
             </div>
           </div>
-
-          {/* Examples */}
-          <section className={styles.graySection}>
-            <div className={styles.container}>
-              <div className={styles.maxWidthWrapper}>
-                <h2 className={styles.sectionHeading}>Quick Examples</h2>
-                <div className={styles.exampleGrid}>
-                  <div>
-                    <h3 className={styles.exampleTitle}>Simple Build Pipeline</h3>
-                    <pre className={styles.codeBox}>
-                      {`pipeline:
-  stages:
-  - steps:
-    - run: go build`}
-                    </pre>
-                  </div>
-                  <div>
-                    <h3 className={styles.exampleTitle}>Conditional Execution</h3>
-                    <pre className={styles.codeBox}>
-                      {`pipeline:
-  if: \${{ branch == "main" }}
-  stages:
-  - steps:
-    - run: go build`}
-                    </pre>
-                  </div>
-                </div>
-                <div className={`${styles.textCenter} ${styles.marginTopLg}`}>
-                  <Button asChild variant="outline">
-                    <Link href="/docs/pipeline-samples">
-                      View All Examples <ArrowRight className={styles.iconSpacing} />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </section>
         </div>
       </Theme>
     </Layout>
